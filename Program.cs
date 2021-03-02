@@ -36,21 +36,21 @@ namespace Leap_Years //Source used for leap year info https://docs.microsoft.com
             switch (Console.ReadLine())
             {
                 case "1":
-                    NextTenLeapYears();
+                    NextYears(10);
                     return true;
                 case "2":
-                    NextTwentyLeapYears();
+                    NextYears(20);
                     return true;
                 case "3":
                     Console.WriteLine("Please provide the year to check");
                     int year = int.Parse(Console.ReadLine());
                     if (LeapYearCheck(year) == true)
                     {
-                    Console.Write($"{year} is a leap year!");
+                        Console.Write($"{year} is a leap year!");
                     }
                     else
                     {
-                    Console.Write($"{year} is NOT a leap year!");
+                        Console.Write($"{year} is NOT a leap year!");
                     }
                     Console.ReadKey();
                     return true;
@@ -58,15 +58,13 @@ namespace Leap_Years //Source used for leap year info https://docs.microsoft.com
                     return false;
                 default:
                      return true;
-
             }
         }
 
         private static bool LeapYearCheck(int year)
         {
-            
             bool leap = false;
-            if ((year%4 == 0 && year%100 == 0 && year%400 == 0) || (year % 4 == 0 && year % 100 != 0))
+            if ((year % 4 == 0 && year % 100 == 0 && year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
             {
                 leap = true;
             }
@@ -76,15 +74,12 @@ namespace Leap_Years //Source used for leap year info https://docs.microsoft.com
             }
             
             return leap;
-            
-
         }
 
-
-        private static void NextTenLeapYears()
-
-        { int current = DateTime.Now.Year;
-            for (int i = 0; i < 10; i++)
+        private static void NextYears(int n)
+        { 
+            int current = DateTime.Now.Year;
+            for (int i = 0; i < n; i++)
             {
                 if (LeapYearCheck(current + i) == true)
                 {
@@ -95,31 +90,8 @@ namespace Leap_Years //Source used for leap year info https://docs.microsoft.com
                     Console.WriteLine($"{current + i} is not a leap year");
                 }
             }
-
             Console.WriteLine("\r\nPlease Enter to return to Main Menu");
             Console.ReadLine();
         }
-
-        private static void NextTwentyLeapYears()
-        {
-            int current = DateTime.Now.Year;
-            for (int i = 0; i < 20; i++)
-            {
-                if (LeapYearCheck(current + i) == true)
-                {
-                    Console.WriteLine($"{current + i} is a leap year");
-                }
-                else
-                {
-                    Console.WriteLine($"{current + i} is not a leap year");
-                }
-            }
-
-            Console.WriteLine("\r\nPlease Enter to return to Main Menu");
-            Console.ReadLine();
-        }
-
-       
-
     }
 }
